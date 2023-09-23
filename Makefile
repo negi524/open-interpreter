@@ -1,14 +1,16 @@
 # Dockerイメージのタグバージョン
 DOCKER_TAG_VERSION = 1.0
+DOCKER_IMAGE_NAME = open-interpreter
+DOCKER_CONTAINER_NAME = open-interpreter-container
 
 # Dockerイメージのビルド
-build-docker-image: Dockerfile
-	docker build -t open-interpreter:$(DOCKER_TAG_VERSION) .
+build: Dockerfile
+	docker build -t $(DOCKER_IMAGE_NAME):$(DOCKER_TAG_VERSION) .
 
 # Dockerイメージを削除する
 remove-image:
-	docker image rm open-interpreter:$(DOCKER_TAG_VERSION)
+	docker image rm $(DOCKER_IMAGE_NAME):$(DOCKER_TAG_VERSION)
 
 # Dockerコンテナを起動しつつbashでコンテナ内に入る
-run-debug: .env
-	docker container run -it --rm --name "open-interpreter-container" --env-file ./.env open-interpreter:$(DOCKER_TAG_VERSION) /bin/bash
+debug: .env
+	docker container run -it --rm --name $(DOCKER_CONTAINER_NAME) --env-file ./.env $(DOCKER_IMAGE_NAME):$(DOCKER_TAG_VERSION) /bin/bash
