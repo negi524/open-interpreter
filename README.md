@@ -16,7 +16,7 @@ cp .env.sample .env
 ### Dockerイメージのビルド
 
 ```bash
-make build-docker-image
+make build
 ```
 
 ### Dockerイメージの削除
@@ -28,5 +28,13 @@ make remove-image
 ### デバッグしつつDockerコンテナの立ち上げ
 
 ```bash
-make run-debug
+make debug
+```
+
+## Open Interpreter実行
+
+https://github.com/KillianLucas/open-interpreter/#commands
+
+```bash
+interpreter --fast
 ```
